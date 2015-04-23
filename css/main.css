@@ -1,17 +1,15 @@
-/* BASE */
-
 body {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
+  background-color: #c0e3b6;
   color: #191b88;
-  margin: 0;
 }
 
 
 h1 {
   margin-bottom: 0;
   font-size: 200%;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 h2 {
@@ -31,25 +29,25 @@ a {
 /* unvisited link */
 a:link {
     color: #195388;
-    opacity: .4;
+    opacity: .6;
 }
 
 /* visited link */
 a:visited {
     color: #195388;
-    opacity: .4;
+    opacity: .6;
 }
 
 /* mouse over link */
 a:hover {
     color: #9a1c2a;
-    opacity: 0.8;
+    opacity: .8;
 }
 
 /* selected link */
 a:active {
     color: #9a1c2a;
-    opacity: 0.8;
+    opacity: .8;
 }
 
 ul {
@@ -63,110 +61,10 @@ li {
   margin: 8px 8px 0;
 }
 
-
-/* CLASSES */
-
-.outer {
-  display: table;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: #a4c29b;
-}
-
 .container {
-  vertical-align: middle;
-  background-color: #c0e3b6;
-  border: 5px;
-  border-color: red;
-  position: absolute;
-  width:  320px;
-  height: 276.156px;
-  left: 50%;
-  margin: -138.078px 0 0 -160px;
-  top: 50%;
+  margin: 64px 0 0 0;
 }
 
 .content {
   margin-top: 32px;
-  opacity: 1;
-}
-
-
-/* SPECIAL */
-
-/* fade in on load */
-
-.headers {
-    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 1s; /* Firefox < 16 */
-        -ms-animation: fadein 1s; /* Internet Explorer */
-         -o-animation: fadein 1s; /* Opera < 12.1 */
-            animation: fadein 1s;
-}
-
-.content {
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
-            animation: fadein 2s;
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Opera < 12.1 */
-@-o-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* box shadow */
-
-.container {
-  -webkit-box-shadow: 0px 0px 131px 89px rgba(192,227,182,1);
-  -moz-box-shadow: 0px 0px 131px 89px rgba(192,227,182,1);
-  box-shadow: 0px 0px 131px 89px rgba(192,227,182,1);
-}
-
-/* border radius */
-
-.containter {
-  border-radius: 124px 124px 124px 124px;
-  -moz-border-radius: 124px 124px 124px 124px;
-  -webkit-border-radius: 124px 124px 124px 124px;
-}
-
-/* background gradient */
-
-.outer {
-  background: rgba(192,227,182,1);
-  background: -moz-radial-gradient(center, ellipse cover, rgba(192,227,182,1) 0%, rgba(150,179,141,1) 100%);
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(192,227,182,1)), color-stop(100%, rgba(150,179,141,1)));
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(192,227,182,1) 0%, rgba(150,179,141,1) 100%);
-  background: -o-radial-gradient(center, ellipse cover, rgba(192,227,182,1) 0%, rgba(150,179,141,1) 100%);
-  background: -ms-radial-gradient(center, ellipse cover, rgba(192,227,182,1) 0%, rgba(150,179,141,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(192,227,182,1) 0%, rgba(150,179,141,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c0e3b6', endColorstr='#96b38d', GradientType=1 );
 }
