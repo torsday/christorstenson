@@ -103,9 +103,9 @@
             return b_seg;
         }
 
-        function resizeCanvas() {
-            canvas.width  = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function repositionContainer() {
+            // canvas.width  = window.innerWidth;
+            // canvas.height = window.innerHeight;
 
             var container     = document.getElementsByClassName('container')[0];
             var headers       = document.getElementsByClassName('headers')[0];
@@ -126,6 +126,11 @@
                 // container.style.left = "0";
                 // container.style.right = "0";
             }
+        }
+
+        function resizeCanvas() {
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight;
 
             branch_segments = setBranchSegFromCanvWidth(canvas.width);
 
@@ -136,6 +141,8 @@
 
             // resize the canvas to fill browser window dynamically
             window.addEventListener('resize', resizeCanvas, false);
+            window.addEventListener('resize', repositionContainer, false);
+            repositionContainer();
             resizeCanvas();
         } else {
             alert("HTML5 Canvas isn't supported by your browser!");
