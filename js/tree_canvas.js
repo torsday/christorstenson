@@ -4,11 +4,16 @@
     var palette;
 
     window.onload = function() {
-        draw();
+        palette = selectPalette();
+        // draw();
         // getLocation();
         // showPosition();
         updatePageElementStyles();
         repositionContainer();
+        document.body.style.backgroundColor = palette.background;
+        if (window.innerWidth > 500) {
+            draw();
+        }
     };
 
     // ---
@@ -40,11 +45,7 @@
             "\n\nLongitude:\n" + position.coords.longitude;
     }
 
-    // ---
-    // TREE
-
-    function draw() {
-
+    function selectPalette () {
         var paletteArr = [{
             background: "#00476F",
             1: "#79BD9A",
@@ -81,7 +82,38 @@
             4: "#87BDB1",
             5: "#AACCB1"
         }]
-        palette = paletteArr[Math.floor((Math.random() * paletteArr.length))];
+        return paletteArr[Math.floor((Math.random() * paletteArr.length))];
+    }
+
+    // ---
+    // TREE
+
+    function repositionContainer() {
+        // canvas.width  = window.innerWidth;
+        // canvas.height = window.innerHeight;
+
+        var container     = document.getElementsByClassName('container')[0];
+        var headers       = document.getElementsByClassName('headers')[0];
+        var newLeftMargin = (Math.floor((window.innerWidth * .375)) - Math.floor((headers.offsetWidth * 0.5)));
+
+        if (window.innerWidth < 500) {
+            container.style.marginLeft = "auto";
+            container.style.marginRight = "auto";
+            container.style.left = "0";
+            container.style.right = "0";
+        } else {
+            if (newLeftMargin > 0) {
+                container.style.marginLeft = newLeftMargin + "px";
+            } else {
+                container.style.marginLeft = "0 px";
+            };
+            container.style.marginRight = "0";
+            // container.style.left = "0";
+            // container.style.right = "0";
+        }
+    }
+
+    function draw() {
 
         var branch_segments = 0;
 
@@ -102,31 +134,6 @@
                 b_seg = random(7, 7);
             };
             return b_seg;
-        }
-
-        function repositionContainer() {
-            // canvas.width  = window.innerWidth;
-            // canvas.height = window.innerHeight;
-
-            var container     = document.getElementsByClassName('container')[0];
-            var headers       = document.getElementsByClassName('headers')[0];
-            var newLeftMargin = (Math.floor((window.innerWidth * .375)) - Math.floor((headers.offsetWidth * 0.5)));
-
-            if (window.innerWidth < 500) {
-                container.style.marginLeft = "auto";
-                container.style.marginRight = "auto";
-                container.style.left = "0";
-                container.style.right = "0";
-            } else {
-                if (newLeftMargin > 0) {
-                    container.style.marginLeft = newLeftMargin + "px";
-                } else {
-                    container.style.marginLeft = "0 px";
-                };
-                container.style.marginRight = "0";
-                // container.style.left = "0";
-                // container.style.right = "0";
-            }
         }
 
         function resizeCanvas() {
@@ -150,8 +157,6 @@
         }
 
         // ---
-
-        document.body.style.backgroundColor = palette.background;
 
         function drawFractalTree(context) {
             drawTree(context, Math.floor(canvas.width * 0.625), canvas.height, -90, branch_segments);
