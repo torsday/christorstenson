@@ -29,3 +29,15 @@
 //     // setFontColor('#191b88')
 //   }
 // }
+
+// window.onload = function() {
+//     draw();
+//     // getLocation();
+//     updatePageElementStyles();
+// };
+//
+// function updatePageElementStyles () {
+//     // console.log('TEST TEST TEST TEST');
+//     var test_t = document.getElementsByTagName('body')[0];
+//     test_t.style.color = 'red';
+// };
