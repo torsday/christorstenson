@@ -206,3 +206,7 @@
     }
 
 })();
+
+setTimeout(function () {
+    (function(H){H.className=H.className.replace(/\bhidden\b/,'')})(document.documentElement)
+},50);

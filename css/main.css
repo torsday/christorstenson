@@ -13,6 +13,10 @@ canvas {
   display: block;
 }
 
+.hidden {
+  display: none;
+}
+
 .canvas-wrap {
   position:relative
 } /* Make this a positioned parent */
