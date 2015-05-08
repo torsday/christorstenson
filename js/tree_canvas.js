@@ -1,7 +1,7 @@
 (function () {
     "use strict";
 
-    let palette;
+    var palette;
 
     window.onload = function() {
         draw();
@@ -17,7 +17,7 @@
         body_text.style.color = palette[1];
 
         var links = document.getElementsByTagName('a');
-        for(let i=0;i < links.length;i++) {
+        for(var i=0;i < links.length;i++) {
             links[i].style.color = palette[1];
         };
     };
@@ -30,24 +30,21 @@
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
         } else {
-            let msg = "Geolocation is not supported by this browser.";
-            console.log(msg);
+            var msg = "Geolocation is not supported by this browser.";
         }
     }
 
     function showPosition(position) {
-        let msg = "\nLatitude:\n" + position.coords.latitude +
+        var msg = "\nLatitude:\n" + position.coords.latitude +
             "\n\nLongitude:\n" + position.coords.longitude;
-        console.log(msg);
     }
 
     // ---
     // TREE
 
     function draw() {
-        "use strict";
 
-        let paletteArr = [{
+        var paletteArr = [{
             background: "#00476F",
             1: "#79BD9A",
             2: "#79BD9A",
@@ -85,61 +82,60 @@
         }]
         palette = paletteArr[Math.floor((Math.random() * paletteArr.length))];
 
-        let branch_segments = 0;
+        var branch_segments = 0;
 
-        let canvas = document.getElementById('myCanvas');
-        let context = canvas.getContext('2d');
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        function setBranchSegFromCanvWidth (w) {
+            var b_seg;
+            if (w < 480) {
+                b_seg = 6;
+            } else if (w < 768) {
+                b_seg = 6;
+            } else if (w < 1240) {
+                b_seg = random(7, 7);
+            } else if (w < 1440) {
+                b_seg = random(7, 7);
+            } else {
+                b_seg = random(7, 7);
+            };
+            return b_seg;
+        }
+
+        function resizeCanvas() {
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            var container     = document.getElementsByClassName('container')[0];
+            var headers       = document.getElementsByClassName('headers')[0];
+            var newLeftMargin = (Math.floor((window.innerWidth * .375)) - Math.floor((headers.offsetWidth * 0.5)));
+
+            if (window.innerWidth < 500) {
+                container.style.marginLeft = "auto";
+                container.style.marginRight = "auto";
+                container.style.left = "0";
+                container.style.right = "0";
+            } else {
+                if (newLeftMargin > 0) {
+                    container.style.marginLeft = newLeftMargin + "px";
+                } else {
+                    container.style.marginLeft = "0 px";
+                };
+                container.style.marginRight = "0";
+                // container.style.left = "0";
+                // container.style.right = "0";
+            }
+
+            branch_segments = setBranchSegFromCanvWidth(canvas.width);
+
+            drawFractalTree(context);
+        }
 
         if (canvas.getContext) {
 
             // resize the canvas to fill browser window dynamically
             window.addEventListener('resize', resizeCanvas, false);
-
-            function resizeCanvas() {
-                canvas.width  = window.innerWidth;
-                canvas.height = window.innerHeight;
-
-                let container     = document.getElementsByClassName('container')[0];
-                let headers       = document.getElementsByClassName('headers')[0];
-                let newLeftMargin = (Math.floor((window.innerWidth * .375)) - Math.floor((headers.offsetWidth * 0.5)));
-
-
-                console.log(newLeftMargin);
-                console.log(window.innerWidth < 500);
-                if (window.innerWidth < 500) {
-                    container.style.marginLeft = "auto";
-                    container.style.marginRight = "auto";
-                    container.style.left = "0";
-                    container.style.right = "0";
-                } else {
-                    if (newLeftMargin > 0) {
-                        console.log("test");
-                        container.style.marginLeft = newLeftMargin + "px";
-                    } else {
-                        container.style.marginLeft = "0 px";
-                    };
-                    container.style.marginRight = "0";
-                    // container.style.left = "0";
-                    // container.style.right = "0";
-                }
-
-
-
-
-                if (canvas.width < 480) {
-                    branch_segments = 6;
-                } else if (canvas.width < 768) {
-                    branch_segments = 6;
-                } else if (canvas.width < 1240) {
-                    branch_segments = random(7, 7);
-                } else if (canvas.width < 1440) {
-                    branch_segments = random(7, 7);
-                } else {
-                    branch_segments = random(7, 7);
-                };
-
-                drawFractalTree(context);
-            }
             resizeCanvas();
         } else {
             alert("HTML5 Canvas isn't supported by your browser!");
@@ -155,11 +151,11 @@
 
         function drawTree(context, x1, y1, angle, depth) {
 
-            let BRANCH_LENGTH = random(0, 20);
+            var BRANCH_LENGTH = random(0, 20);
 
             if (depth != 0) {
-                let x2 = x1 + (cos(angle) * depth * BRANCH_LENGTH);
-                let y2 = y1 + (sin(angle) * depth * BRANCH_LENGTH);
+                var x2 = x1 + (cos(angle) * depth * BRANCH_LENGTH);
+                var y2 = y1 + (sin(angle) * depth * BRANCH_LENGTH);
 
                 drawLine(context, x1, y1, x2, y2, depth);
                 drawTree(context, x2, y2, angle - random(15, 20), depth - 1);
