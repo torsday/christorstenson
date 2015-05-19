@@ -5,9 +5,6 @@
 
     window.onload = function() {
         palette = selectPalette();
-        // draw();
-        // getLocation();
-        // showPosition();
         updatePageElementStyles();
         repositionContainer();
         document.body.style.backgroundColor = palette.background;
@@ -28,7 +25,6 @@
         };
     };
 
-
     // ---
     // GEOLOCATION
 
@@ -47,34 +43,6 @@
 
     function selectPalette () {
         var paletteArr = [{
-            background: "#00476F",
-            1: "#79BD9A",
-            2: "#79BD9A",
-            3: "#A8DBA8",
-            4: "#CFF09E",
-            5: "#701122"
-        }, {
-            background: "#1C140D",
-            1: "#FFFFFF",
-            2: "#F2E9E1",
-            3: "#CBE86B",
-            4: "#CBE86B",
-            5: "#F2E9E1"
-        }, {
-            background: "#DCE9BE",
-            1: "#2E2633",
-            2: "#2E2633",
-            3: "#555152",
-            4: "#555152",
-            5: "#99173C"
-        }, {
-            background: "#45484B",
-            1: "#EEE6AB",
-            2: "#EEE6AB",
-            3: "#C5BC8E",
-            4: "#C5BC8E",
-            5: "#C5BC8E"
-        }, {
             background: "#D3E2B6",
             1: "#3A8585",
             2: "#68B3AF",
@@ -89,8 +57,6 @@
     // TREE
 
     function repositionContainer() {
-        // canvas.width  = window.innerWidth;
-        // canvas.height = window.innerHeight;
 
         var container     = document.getElementsByClassName('container')[0];
         var headers       = document.getElementsByClassName('headers')[0];
@@ -108,8 +74,6 @@
                 container.style.marginLeft = "0 px";
             };
             container.style.marginRight = "0";
-            // container.style.left = "0";
-            // container.style.right = "0";
         }
     }
 
@@ -152,6 +116,7 @@
             window.addEventListener('resize', repositionContainer, false);
             repositionContainer();
             resizeCanvas();
+
         } else {
             alert("HTML5 Canvas isn't supported by your browser!");
         }
@@ -192,14 +157,11 @@
 
             context.lineWidth = thickness * 1.5;
             context.beginPath();
-
             context.moveTo(x1, y1);
             context.lineTo(x2, y2);
-
             context.closePath();
             context.stroke();
         }
-
 
         function cos(angle) {
             return Math.cos(deg_to_rad(angle));
